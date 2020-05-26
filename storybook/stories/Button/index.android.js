@@ -1,14 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableNativeFeedback } from 'react-native';
+import { View, TouchableNativeFeedback, StyleSheet } from 'react-native';
 
 export default function Button({ onPress, children }) {
-  return <TouchableNativeFeedback onPress={onPress}>{children}</TouchableNativeFeedback>;
+  return <TouchableNativeFeedback onPress={onPress}>
+    <View style={styles.container}>
+      {children}
+    </View>
+  </TouchableNativeFeedback>;
 }
+
+const styles = StyleSheet.create({
+  container: {
+    borderWidth: 1,
+    borderColor: 'blue',
+  }
+});
 
 Button.defaultProps = {
   children: null,
-  onPress: () => {},
+  onPress: () => { },
 };
 
 Button.propTypes = {
