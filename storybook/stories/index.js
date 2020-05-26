@@ -8,7 +8,7 @@ import { linkTo } from '@storybook/addon-links';
 import Button from './Button';
 import CenterView from './CenterView';
 import Welcome from './Welcome';
-import { catchClause } from '@babel/types';
+import FAB from './FAB/index';
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
@@ -24,6 +24,20 @@ storiesOf('Button', module)
       <Text>😀 😎 👍 💯</Text>
     </Button>
   ));
+
+storiesOf('Floating Action button', module)
+  .add('Center', () => (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}
+    >
+      <FAB onPress= {() => (console.log('object'))} />
+    </View>
+  ));
+
 
 storiesOf('Elevation', module)
   .add('View', () => (
