@@ -11,6 +11,11 @@ import Welcome from './Welcome';
 import FAB from './FAB/index';
 import AnimeTest from './AnimeTest/index';
 import ArcMotion from './ArcMotion/index';
+import MaterialButton from './MaterialButton/index';
+import { Icon } from 'react-native-vector-icons'
+import { MKColor, MKButton, setTheme } from 'react-native-material-kit'
+import { COLOR, ThemeContext, ThemeProvider, getTheme, ActionButton, Toolbar } from 'react-native-material-ui';
+
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
@@ -36,19 +41,69 @@ storiesOf('Floating Action button', module)
         alignItems: 'center'
       }}
     >
-      <FAB onPress= {() => (console.log('object'))} />
+      <FAB onPress={() => (console.log('object'))} />
     </View>
   ));
 
-  storiesOf('Animated', module)
+storiesOf('Animated', module)
   .add('Animated experiments', () => (
     <AnimeTest />
   ));
 
-  storiesOf('ArcMotion', module)
+storiesOf('ArcMotion', module)
   .add('Arc: ', () => (
-    <ArcMotion from={{x: 0, y:0}} to={{x:350, y:350}} />
+    <ArcMotion from={{ x: 0, y: 0 }} to={{ x: 350, y: 350 }} />
   ));
+
+storiesOf('Material kit', module)
+  .add('FAB: ', () => {
+    const Fab = MKButton.accentColoredFab().build()
+    return (
+      <Fab>
+        <Icon name='done' size={metrics.fabIconSize} color='white' />
+      </Fab>
+    )
+  })
+  .add('Theming FAB: ', () => {
+    setTheme({
+      accentColor: MKColor.Blue,
+    })
+    const Fab = MKButton.accentColoredFab().build()
+    return (
+      <Fab>
+        <Icon name='done' size={metrics.fabIconSize} color='white' />
+      </Fab>
+    )
+  })
+
+  storiesOf('Material UI', module)
+  .add('FAB material UI: ', () => {
+    const theme = {
+      palette: {
+        accentColor: COLOR.amber800
+      }
+    }
+    return (
+      <ThemeProvider uiTheme={theme}>
+        <ActionButton icon='done' style={{container: {margin: 10}}} />
+      </ThemeProvider>
+      
+    )
+  })
+  .add('tootlbar: ', () => {
+    <ThemeProvider uiTheme={{toolbar: {}}}>
+        <View>
+          <Toolbar 
+            leftElement="menu"
+            centerElement="Searchable"
+            searchable={{
+              autoFocus: true,
+              placeholder: 'Search',
+            }}
+          />
+        </View>
+      </ThemeProvider>
+  })
 
 
 storiesOf('Elevation', module)
