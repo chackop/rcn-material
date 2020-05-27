@@ -9,6 +9,7 @@ import Button from './Button';
 import CenterView from './CenterView';
 import Welcome from './Welcome';
 import FAB from './FAB/index';
+import AnimeTest from './AnimeTest/index';
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
@@ -36,6 +37,11 @@ storiesOf('Floating Action button', module)
     >
       <FAB onPress= {() => (console.log('object'))} />
     </View>
+  ));
+
+  storiesOf('Animated', module)
+  .add('Animated experiments', () => (
+    <AnimeTest />
   ));
 
 
