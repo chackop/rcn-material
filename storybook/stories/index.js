@@ -10,6 +10,7 @@ import CenterView from './CenterView';
 import Welcome from './Welcome';
 import FAB from './FAB/index';
 import AnimeTest from './AnimeTest/index';
+import ArcMotion from './ArcMotion/index';
 
 storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
@@ -42,6 +43,11 @@ storiesOf('Floating Action button', module)
   storiesOf('Animated', module)
   .add('Animated experiments', () => (
     <AnimeTest />
+  ));
+
+  storiesOf('ArcMotion', module)
+  .add('Arc: ', () => (
+    <ArcMotion from={{x: 0, y:0}} to={{x:350, y:350}} />
   ));
 
 
